@@ -1,12 +1,9 @@
 package com.example.demo;
 
 import org.apache.hc.client5.http.classic.methods.HttpGet;
-import org.apache.hc.client5.http.classic.methods.HttpPost;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
 import org.apache.hc.client5.http.impl.classic.HttpClients;
-import org.apache.hc.core5.http.ContentType;
-import org.apache.hc.core5.http.io.entity.StringEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +12,6 @@ import java.nio.charset.StandardCharsets;
 
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
-
 
 @Service
 public class service_main {
@@ -30,14 +26,17 @@ public class service_main {
 
 
     public int sendSms(String apiId, String apiPassword, String smsType, String encoding,
-                       String senderId, String phoneNumber, String textMessage) throws IOException {
+                       String senderId, String phoneNumber, String textMessage, String uid) throws IOException {
+
+
 
         String dltEntityId = "45350435";
         String dltEntityTemplateId = "23443456";
         String validityPeriod = "1800";
-        String uid = "2erx4r44";
+        String myuid = uid;
         String callbackUrl = "www.ismartghana.com";
         String isScheduled = "false";
+
 
         // Construct the URL with query parameters
         String url = String.format(
@@ -54,7 +53,7 @@ public class service_main {
                 URLEncoder.encode(dltEntityId, StandardCharsets.UTF_8),
                 URLEncoder.encode(dltEntityTemplateId, StandardCharsets.UTF_8),
                 URLEncoder.encode(validityPeriod, StandardCharsets.UTF_8),
-                URLEncoder.encode(uid, StandardCharsets.UTF_8),
+                URLEncoder.encode(myuid, StandardCharsets.UTF_8),
                 URLEncoder.encode(callbackUrl, StandardCharsets.UTF_8),
                 URLEncoder.encode(isScheduled, StandardCharsets.UTF_8)
         );

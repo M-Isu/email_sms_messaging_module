@@ -1,6 +1,6 @@
 package com.example.demo;
 
-
+import java.util.UUID;
 import com.example.demo.Models.request;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/send")
@@ -42,6 +43,9 @@ public class controller_main {
 
         if(value.getChannel().equals("sms")) {
 
+            UUID uuid = UUID.randomUUID();
+            String uuidAsString = uuid.toString();
+
             System.out.println(environment.getProperty("sms.apiId"));
 
             int result = myservice.sendSms(environment.getProperty("sms.apiId"),
@@ -50,7 +54,8 @@ public class controller_main {
                     environment.getProperty("sms.encoding"),
                     value.getService_name(),
                     value.getPhone_number(),
-                    value.getMessage_details()
+                    value.getMessage_details(),
+                    uuidAsString
             );
 
             if(result == 200){
