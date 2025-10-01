@@ -24,6 +24,9 @@ public class controller_main {
     private service_main myservice;
 
     @Autowired
+    private OutlookAuth outlookAuthx;
+
+    @Autowired
     private Email_App email_application;
 
     @Autowired
@@ -78,7 +81,7 @@ public class controller_main {
 //          String accessToken, String userId, String messageContent, String receiver
             //get access token for email.
 
-            OutlookAuth outlookAuthx = new OutlookAuth();
+
             String accessToken = outlookAuthx.getAccessToken();
 
             int response_code = email_application.sendEmail(accessToken, environment.getProperty("email.senderEmail"),value.getMessage_details(), value.getEmail(), "EMAIL-DIRECT");
@@ -98,7 +101,7 @@ public class controller_main {
         }
         else if(value.getChannel().equals("Application")){
 
-            OutlookAuth outlookAuthx = new OutlookAuth();
+
             String accessToken = outlookAuthx.getAccessToken();
 
             int response_code = email_application.sendEmail(accessToken, environment.getProperty("email.userId"),value.getMessage_details(), value.getEmail(), value.getIdentifier());
