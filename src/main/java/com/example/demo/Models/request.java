@@ -10,6 +10,15 @@ public class request {
       private String message_details;
       private String email;
       private String identifier;
+      private String message_form;
+
+    public String getMessage_form() {
+        return message_form;
+    }
+
+    public void setMessage_form(String message_form) {
+        this.message_form = message_form;
+    }
 
     public String getIdentifier() {
         return identifier;

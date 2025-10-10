@@ -33,7 +33,6 @@ public class controller_main {
     @Autowired
     private Environment environment;
 
-
     @PostMapping("/message")
     public ResponseEntity<?> controller(@RequestBody request value) throws IOException {
 
@@ -48,14 +47,19 @@ public class controller_main {
 
             System.out.println(environment.getProperty("sms.apiId"));
 
+            //String messageType, String service_name, String notificationtype
+
             int result = myservice.sendSms(environment.getProperty("sms.apiId"),
                     environment.getProperty("sms.apiPassword"),
-                    value.getMessage_type(),
+                    value.getMessage_form(),
                     environment.getProperty("sms.encoding"),
                     value.getService_name(),
                     value.getPhone_number(),
                     value.getMessage_details(),
-                    uuidAsString
+                    uuidAsString,
+                    value.getMessage_type(),
+                    value.getService_name(),
+                    value.getNotification_type()
             );
 
             if(result == 200){
@@ -89,8 +93,16 @@ public class controller_main {
 
             String accessToken = outlookAuthx.getAccessToken();
 
-            int response_code = email_application.sendEmail(accessToken, environment.getProperty("email.senderEmail"),value.getMessage_details(), value.getEmail(), "EMAIL-DIRECT");
+            int response_code = email_application.sendEmail(accessToken,
+                    environment.getProperty("email.senderEmail"),
+                    value.getMessage_details(),
+                    value.getEmail(),
+                    value.getIdentifier(),
+                    value.getNotification_type(),
+                    value.getService_name(),
+                    value.getMessage_type());
             //will have to change this to use an actual email api.
+
             if(response_code == 202){
                 Map<String, Object> responseBody = Map.of(
                         "status", "Success",
@@ -109,7 +121,10 @@ public class controller_main {
 
             String accessToken = outlookAuthx.getAccessToken();
 
-            int response_code = email_application.sendEmail(accessToken, environment.getProperty("email.userId"),value.getMessage_details(), value.getEmail(), value.getIdentifier());
+            int response_code = email_application.sendEmail(accessToken, environment.getProperty("email.userId"),value.getMessage_details(), value.getEmail(), value.getIdentifier(),
+                    value.getNotification_type(),
+                    value.getService_name(),
+                    value.getMessage_type());
 
             if(response_code == 202){
                 Map<String, Object> responseBody = Map.of(

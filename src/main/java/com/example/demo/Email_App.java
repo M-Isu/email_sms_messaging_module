@@ -24,7 +24,8 @@ public class Email_App {
 
     private static final String GRAPH_API_URL = "https://graph.microsoft.com/v1.0/users/%s/sendMail";
 
-    public int sendEmail(String accessToken, String userId, String messageContent, String receiver , String identifier) throws IOException {
+    public int sendEmail(String accessToken, String userId, String messageContent, String receiver , String identifier, String notificationtype,
+                         String servicename, String messagetype) throws IOException {
         OkHttpClient client = new OkHttpClient();
 
         // Construct email body
@@ -71,7 +72,21 @@ public class Email_App {
             email_object.setMessagedetails(messageContent);
             email_object.setResponsecode(Integer.toString(response.code()));
             email_object.setIdentifier(identifier);
+            email_object.setNotificationType(notificationtype);
+            email_object.setDestinationEmail(receiver);
+            email_object.setServiceName(servicename);
+            email_object.setMessageType(messagetype);
             datastore.store_return_value_email(email_object);
+
+
+//            {
+//                "channel": "email",
+//                    "service_name": "auth-service",
+//                    "notification_type": "password_reset",
+//                    "email": "user@example.com",
+//                    "message_type": "text",
+//                    "message_details": "Hello John, use this link to reset your password: https://example.com/reset?token=xyz123. This link expires in 15 minutes."
+//            }
 
         });
 

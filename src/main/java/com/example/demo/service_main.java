@@ -25,8 +25,8 @@ public class service_main {
     private static final String SMS_API_URL = "http://65.108.110.234:5663/api/SendSMS";
 
 
-    public int sendSms(String apiId, String apiPassword, String smsType, String encoding,
-                       String senderId, String phoneNumber, String textMessage, String uid) throws IOException {
+    public int sendSms(String apiId, String apiPassword, String messageform, String encoding,
+                       String senderId, String phoneNumber, String textMessage, String uid, String messageType, String service_name, String notificationtype) throws IOException {
 
 
 
@@ -45,9 +45,9 @@ public class service_main {
                         "&dltEntityId=%s&dltEntityTemplateId=%s&ValidityPeriodInSeconds=%s&uid=%s&callback_url=%s&isScheduled=%s",
                 URLEncoder.encode(apiId, StandardCharsets.UTF_8),
                 URLEncoder.encode(apiPassword, StandardCharsets.UTF_8),
-                URLEncoder.encode(smsType, StandardCharsets.UTF_8),
+                URLEncoder.encode(messageform, StandardCharsets.UTF_8),
                 URLEncoder.encode(encoding, StandardCharsets.UTF_8),
-                URLEncoder.encode(senderId, StandardCharsets.UTF_8),
+                URLEncoder.encode("ISMART", StandardCharsets.UTF_8),
                 URLEncoder.encode(phoneNumber, StandardCharsets.UTF_8),
                 URLEncoder.encode(textMessage, StandardCharsets.UTF_8),
                 URLEncoder.encode(dltEntityId, StandardCharsets.UTF_8),
@@ -73,6 +73,9 @@ public class service_main {
                     storage_model store = new storage_model();
                     store.setMessagedetails(textMessage);
                     store.setPhoneNumber(phoneNumber);
+                    store.setMessageType(messageType);
+                    store.setServiceName(service_name);
+                    store.setNotificationType(notificationtype);
                     store.setResponsecode(Integer.toString(statusCode));
                     databaseStorage.store_return_value(store);
 

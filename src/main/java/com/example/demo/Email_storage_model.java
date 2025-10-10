@@ -19,6 +19,51 @@ public class Email_storage_model {
 
     private String Responsecode;
 
+    private String NotificationType;
+
+    private String DestinationEmail;
+
+    private String ServiceName;
+
+    private String MessageType;
+
+    public String getNotificationType() {
+        return NotificationType;
+    }
+
+    public void setNotificationType(String notificationType) {
+        NotificationType = notificationType;
+    }
+
+    public String getDestinationEmail() {
+        return DestinationEmail;
+    }
+
+    public void setDestinationEmail(String destinationEmail) {
+        DestinationEmail = destinationEmail;
+    }
+
+    public String getServiceName() {
+        return ServiceName;
+    }
+
+    public void setServiceName(String serviceName) {
+        ServiceName = serviceName;
+    }
+
+    public String getMessageType() {
+        return MessageType;
+    }
+
+    public void setMessageType(String messageType) {
+        MessageType = messageType;
+    }
+
+    //            email_object.setNotficationType(notificationtype);
+//            email_object.setDestinationEmail(email);
+//            email_object.setServiceName(servicename);
+//            email_object.setMessageType(messagetype);
+
     private LocalDate time = LocalDate.now();
 
     public Long getId() {

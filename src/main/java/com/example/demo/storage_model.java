@@ -20,7 +20,37 @@ public class storage_model {
 
     private String Responsecode;
 
+    private String NotificationType;
+
+    private String MessageType;
+
+    private String ServiceName;
+
     private LocalDate time = LocalDate.now();
+
+    public String getNotificationType() {
+        return NotificationType;
+    }
+
+    public void setNotificationType(String notificationType) {
+        NotificationType = notificationType;
+    }
+
+    public String getMessageType() {
+        return MessageType;
+    }
+
+    public void setMessageType(String messageType) {
+        MessageType = messageType;
+    }
+
+    public String getServiceName() {
+        return ServiceName;
+    }
+
+    public void setServiceName(String serviceName) {
+        ServiceName = serviceName;
+    }
 
     public String getPhoneNumber() {
         return phoneNumber;
