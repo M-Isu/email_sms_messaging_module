@@ -16,12 +16,14 @@ public class storage_model {
 
     private String phoneNumber;
 
+    @Column(columnDefinition = "TEXT")
     private String Messagedetails;
 
     private String Responsecode;
 
     private String NotificationType;
 
+    @Column(columnDefinition = "TEXT")
     private String MessageType;
 
     private String ServiceName;

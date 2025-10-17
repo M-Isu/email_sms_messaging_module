@@ -15,6 +15,7 @@ public class Email_storage_model {
 
     private String identifier;
 
+    @Column(columnDefinition = "TEXT")
     private String Messagedetails;
 
     private String Responsecode;
@@ -25,6 +26,7 @@ public class Email_storage_model {
 
     private String ServiceName;
 
+    @Column(columnDefinition = "TEXT")
     private String MessageType;
 
     public String getNotificationType() {
