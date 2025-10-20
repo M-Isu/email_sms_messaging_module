@@ -64,8 +64,6 @@ jobs:
             echo "🚀 Starting new container..."
             cd ~/env_variables_for_email_and_sms
             sudo docker run -d \
-              --env-file .env \
-              -v /etc/app_keys:/etc/app_keys:ro \
               -p 9090:8441 \
               --name email_and_sms \
               ghcr.io/m-isu/email_and_sms:latest
