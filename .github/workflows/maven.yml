@@ -62,7 +62,6 @@ jobs:
             sudo docker rm email_and_sms || true
 
             echo "🚀 Starting new container..."
-            cd ~/env_variables_for_email_and_sms
             sudo docker run -d \
               -p 9090:8441 \
               --name email_and_sms \
