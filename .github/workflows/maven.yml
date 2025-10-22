@@ -62,10 +62,14 @@ jobs:
             sudo docker rm email_and_sms || true
 
             echo "🚀 Starting new container..."
+            cd ~/env_variables_for_notification
             sudo docker run -d \
-              -p 9090:8441 \
-              --name email_and_sms \
-              ghcr.io/m-isu/email_and_sms:latest
+            -p 9090:8441 \
+            --name email_and_sms \
+            --env-file .env \
+            -v /etc/app_keys:/etc/app_keys:ro \
+            ghcr.io/m-isu/email_and_sms:latest
+  
 
             echo "🧽 Cleaning up old images..."
             sudo docker image prune -f
