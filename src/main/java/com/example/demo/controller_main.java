@@ -63,7 +63,6 @@ public class controller_main {
             );
 
             if(result == 200){
-
                 Map<String, Object> responseBody = Map.of(
                         "status", "success",
                         "message", "Message sent successfully",
